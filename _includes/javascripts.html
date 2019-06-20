@@ -37,19 +37,42 @@
 
   });
 }(jQuery));
-let illo = new Zdog.Illustration({
-  // set canvas with selector
-  element: '.zdog-canvas',
-});
 
-// add circle
-new Zdog.Ellipse({
-  addTo: illo,
-  diameter: 80,
-  stroke: 20,
-  color: '#636',
-});
+function animateLine(line, illo, startTime, timestamp) {
+  const t0 = startTime || timestamp;
+  const t =  timestamp - t0;
+  line.path = [{ y: -75 }, { y: -75+0.2 }];
+  illo.updateRenderGraph();
+  requestAnimationFrame(animateLine.bind(null, line, illo, t0));
+}
 
-// update & render
-illo.updateRenderGraph();
+function renderLogo() {
+  let illo = new Zdog.Illustration({
+    element: '.zdog-canvas',
+  });
+
+  // add circle
+  const circle = new Zdog.Ellipse({
+    addTo: illo,
+    diameter: 150,
+    stroke: 10,
+    color: '#fff',
+  });
+
+  const line = new Zdog.Shape({
+    addTo: circle,
+    path: [{ y: -75 }, { y: -75 }],
+    stroke: 10,
+    color: '#fff',
+  });
+  // update & render
+  illo.updateRenderGraph();
+  setTimeout(_ => {
+    line.path[1].y = -15;
+    illo.updateRenderGraph();
+  }, 2000)
+  // animateLine(line, illo);
+}
+
+renderLogo();
 </script>

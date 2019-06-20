@@ -10,7 +10,9 @@ layout: default
 
 <header class="blog-header">
     {% if site.logo %}
-      <a class="blog-logo" href="{{site.url}}" style="background-image: url('{{ site.logo }}')">{{ site.title }}</a>
+      <div style="text-align:center;">
+        <canvas class="zdog-canvas" width="240" height="240"></canvas>
+      </div>
     {% endif %}
     <h1 class="blog-title">{{ site.title }}</h1>
     <h2 class="blog-description">{{ site.description }}</h2>
@@ -29,9 +31,6 @@ layout: default
       <a href="https://resume-rahul-ramteke.herokuapp.com/" target="_blank" style="padding-left: 20px;">Geeky résumé</a>
       <a href="/projects" target="_blank" style="padding-left: 20px;">Projects</a>
       <a href="/design" target="_blank" style="padding-left: 20px;">Design</a>
-    </div>
-    <div>
-      <canvas class="zdog-canvas" width="240" height="240"></canvas>
     </div>
 </header>
 
